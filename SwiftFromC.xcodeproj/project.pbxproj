@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5F439D2E28410F0E0075B318 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F439D2D28410F0E0075B318 /* main.m */; };
+		5F439D3528410F240075B318 /* SwiftClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F439D3428410F240075B318 /* SwiftClass.swift */; };
+		5F439D3C2844ACFF0075B318 /* libffi.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F439D3B2844ACFF0075B318 /* libffi.8.dylib */; };
+		5F439D3D2844ACFF0075B318 /* libffi.8.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F439D3B2844ACFF0075B318 /* libffi.8.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,11 +23,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		5F439D3E2844ACFF0075B318 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F439D3D2844ACFF0075B318 /* libffi.8.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5F439D2A28410F0E0075B318 /* SwiftFromC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftFromC; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F439D2D28410F0E0075B318 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5F439D3428410F240075B318 /* SwiftClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftClass.swift; sourceTree = "<group>"; };
+		5F439D392844A9710075B318 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = lib/libffi.a; sourceTree = "<group>"; };
+		5F439D3B2844ACFF0075B318 /* libffi.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.8.dylib; path = lib/libffi.8.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F439D3C2844ACFF0075B318 /* libffi.8.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +61,7 @@
 			children = (
 				5F439D2C28410F0E0075B318 /* SwiftFromC */,
 				5F439D2B28410F0E0075B318 /* Products */,
+				5F439D382844A9710075B318 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +77,18 @@
 			isa = PBXGroup;
 			children = (
 				5F439D2D28410F0E0075B318 /* main.m */,
+				5F439D3428410F240075B318 /* SwiftClass.swift */,
 			);
 			path = SwiftFromC;
+			sourceTree = "<group>";
+		};
+		5F439D382844A9710075B318 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F439D3B2844ACFF0075B318 /* libffi.8.dylib */,
+				5F439D392844A9710075B318 /* libffi.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,6 +101,7 @@
 				5F439D2628410F0E0075B318 /* Sources */,
 				5F439D2728410F0E0075B318 /* Frameworks */,
 				5F439D2828410F0E0075B318 /* CopyFiles */,
+				5F439D3E2844ACFF0075B318 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -93,6 +123,7 @@
 				TargetAttributes = {
 					5F439D2928410F0E0075B318 = {
 						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -119,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F439D3528410F240075B318 /* SwiftClass.swift in Sources */,
 				5F439D2E28410F0E0075B318 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,20 +270,49 @@
 		5F439D3228410F0E0075B318 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H6KAAZFWNY;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = /Users/c5326378/workspace/SwiftFromC/include;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/c5326378/workspace/SwiftFromC/lib,
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		5F439D3328410F0E0075B318 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H6KAAZFWNY;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = /Users/c5326378/workspace/SwiftFromC/include;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/c5326378/workspace/SwiftFromC/lib,
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
